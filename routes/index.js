@@ -1,19 +1,15 @@
 const router = require('koa-router')()
+const fetchCritical = require('../lib/fetch_critical')
 
 router.get('/', async (ctx, next) => {
+  let criticalCss = await fetchCritical('https://www.theknot.com/content')
+
   await ctx.render('index', {
-    title: 'Hello Koa 2!'
+    title: 'Hello Koa 2!',
+    body: criticalCss
   })
 })
 
-router.get('/string', async (ctx, next) => {
-  ctx.body = 'koa2 string'
-})
 
-router.get('/json', async (ctx, next) => {
-  ctx.body = {
-    title: 'koa2 json'
-  }
-})
 
 module.exports = router

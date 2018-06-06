@@ -9,4 +9,15 @@ router.get('/', async (ctx, next) => {
   })
 })
 
+router.get('/critical', async (ctx, next) => {
+  const key = ctx.request.query.key || ctx.request.querystring
+  const meta = await Meta.findOne({ where: { key: key } })
+
+  if (!meta) {
+    fetchCritical(ctx.request.query, key)
+  }
+
+  ctx.body = meta ? meta.get('value') : ''
+})
+
 module.exports = router

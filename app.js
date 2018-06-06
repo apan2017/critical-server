@@ -1,3 +1,5 @@
+// 测试是不可能测试的，这辈子都不可能测试的。只能靠写点bug维持一下生活这样子。
+
 const Koa = require('koa')
 const app = new Koa()
 const views = require('koa-views')
